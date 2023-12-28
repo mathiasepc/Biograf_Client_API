@@ -1,9 +1,9 @@
 ﻿
 
-namespace Utilities.Interface
+namespace Utilities.Interface;
+
+public interface IGenericRepository<T> where T : class
 {
-    public interface IGenericRepository<T> where T : class
-    {
-        Task<bool> InsertModel(T model);
-    }
+    Task<bool> InsertModel(T model);
+    Task<List<T>> GetAll();
 }

@@ -1,11 +1,11 @@
 <div id="carousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-        <div class="carousel-item custom-flexbox custom-flexbox-contain" *ngFor="let image of images; let i = index"
+        <div class="carousel-item custom-flexbox custom-flexbox-contain" *ngFor="let movie of movies; let i = index"
             [class.active]="i === 0">
-            <img [src]="image" class="d-block w-100" alt="Image {{ i + 1 }}">
+            <img [src]="movie.imageUrl" class="d-block w-100" alt="Image {{ i + 1 }}">
             <!-- Knapper placeret i bunden af hvert carousel-element -->
             <div class="carousel-buttons">
-                <button class="btn btn-primary">Bestil</button>
+                <button class="btn btn-primary" [routerLink]="['/booking', movie.id]">Bestil</button>
                 <!--<button class="btn btn-secondary">Se Trailer</button>-->
             </div>
         </div>

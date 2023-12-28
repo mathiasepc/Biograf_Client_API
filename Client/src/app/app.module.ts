@@ -5,11 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './SharePage/footer/footer.component';
 import { NavbarComponent } from './SharePage/navbar/navbar.component';
-import { FrontPageComponent } from './Pages/front-page/front-page.component';
-import { AboutUsComponent } from './Pages/about-us/about-us.component';
-import { CommingSoonComponent } from './Pages/comming-soon/comming-soon.component';
 import { LoginPageComponent } from './Pages/login-page/login-page.component';
 import { RegisterPageComponent } from './Pages/register-page/register-page.component';
+import { IndexComponent } from './Pages/index/index.component';
+import { CommingComponent } from './Pages/comming/comming.component';
+import { AboutComponent } from './Pages/about/about.component';
+import { BookingComponent } from './Pages/booking/booking.component';
 
 
 
@@ -19,11 +20,12 @@ import { RegisterPageComponent } from './Pages/register-page/register-page.compo
     AppComponent,
     FooterComponent,
     NavbarComponent,
-    FrontPageComponent,
-    AboutUsComponent,
-    CommingSoonComponent,
     LoginPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    IndexComponent,
+    CommingComponent,
+    AboutComponent,
+    BookingComponent
   ],
   imports: [
     BrowserModule,

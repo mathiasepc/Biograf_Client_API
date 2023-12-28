@@ -12,7 +12,7 @@ using Repositories.Database;
 namespace Repository.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231127181322_InitializeDatabase")]
+    [Migration("20231228161502_InitializeDatabase")]
     partial class InitializeDatabase
     {
         /// <inheritdoc />
@@ -107,6 +107,7 @@ namespace Repository.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("Age")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -125,6 +126,7 @@ namespace Repository.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Location")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -143,6 +145,7 @@ namespace Repository.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("Column")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -150,6 +153,7 @@ namespace Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Row")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -164,11 +168,16 @@ namespace Repository.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("Length")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("release")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -197,12 +206,15 @@ namespace Repository.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("Age")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")

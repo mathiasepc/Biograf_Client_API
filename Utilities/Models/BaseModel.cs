@@ -1,12 +1,23 @@
 ﻿
-using Utilities.Interface;
-
 namespace Utilities.Models;
 
-public abstract class BaseModel : IBaseModel
+public class BaseModel : IBaseModel
 {
-    public Guid Id { get; set; }
+    private Guid _id;
+
+    [Key]
+    public Guid Id
+    {
+        get { return _id; }
+        private set { _id = value; }
+    }
+
+    [Required]
     public string Name { get; set; }
 
-    public abstract void MapObject(dynamic model);
+    // Constructor to initialize the Id property
+    public BaseModel()
+    {
+        Id = Guid.NewGuid();
+    }
 }

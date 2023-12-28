@@ -13,6 +13,18 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         _context = context;
     }
 
+    public async Task<List<T>> GetAll()
+    {
+        try
+        {
+            return _context.Set<T>().ToList();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Noget gik galt {ex.Message}");
+        }
+    }
+
     public async Task<bool> InsertModel(T model)
     {
         try
@@ -21,7 +33,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
             await _context.SaveChangesAsync();
             return true;
         }
-        catch(DbUpdateException ex)
+        catch (DbUpdateException ex)
         {
             throw new Exception(ex.Message);
         }
