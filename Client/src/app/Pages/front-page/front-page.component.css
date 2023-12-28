@@ -1,0 +1,26 @@
+.custom-flexbox {
+    text-align: center;
+}
+
+.custom-flexbox img {
+    width: 100%;
+    height: 50vw;
+}
+
+.custom-flexbox-contain img {
+    object-fit: cover; /* Beholder billedets aspect ratio og udfylder containeren */
+}
+
+.carousel-buttons {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px; /* Juster efter behov */
+}
+
+/*
+.carousel-buttons button {
+    margin-right: 10px; /* Mellemrum mellem knapperne 
+} */
