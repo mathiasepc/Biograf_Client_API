@@ -10,13 +10,6 @@ import { iMovieDTO } from 'src/app/Models/iMovieDTO';
 export class IndexComponent implements OnInit {
   iMovies: iMovieDTO[] = [];
 
-  carouselMovies = [
-    { id: 1, title: 'Film 1', imageUrl: 'assets/img/Barbie.jpg' },
-    { id: 2, title: 'Film 2', imageUrl: 'assets/img/GOTG.jpg' },
-    { id: 3, title: 'Film 3', imageUrl: 'assets/img/Oppenheimer.jpg' },
-    // ... andre film ...
-  ];
-
   constructor(private movieService: MovieService) {}
 
   ngOnInit(): void {
