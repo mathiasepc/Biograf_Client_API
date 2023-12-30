@@ -6,3 +6,5 @@ global using Microsoft.AspNetCore.Mvc;
 global using Repositories.Database;
 global using Utilities.Interface;
 global using Utilities.Models;
+global using Utilities.DTO;
+global using BiografAPI.Services;

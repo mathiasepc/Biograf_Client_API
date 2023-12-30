@@ -1,4 +1,6 @@
 
+using BiografAPI.ProfileDTO;
+using Microsoft.AspNetCore.Hosting;
 using Repository.Repositories;
 using System.Text.Json.Serialization;
 
@@ -10,7 +12,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
-
+builder.Services.AddAutoMapper(typeof(MovieProfile));
 builder.Services.AddDbContext<DatabaseContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("MathiasConnection"));
@@ -19,6 +21,17 @@ builder.Services.AddDbContext<DatabaseContext>(option =>
 //Hvis man har mange til mange relationer, kan den godt finde på at blive ved med at lave lister med data.
 //man ender så med at få forkert data. Det stopper denne
 builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost4200",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+        });
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -36,6 +49,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors("AllowLocalhost4200");
 
 app.MapControllers();
 

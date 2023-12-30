@@ -1,5 +1,6 @@
 ﻿
-using System.Reflection.Metadata.Ecma335;
+using AutoMapper;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BiografAPI.Controllers;
 
@@ -8,24 +9,43 @@ namespace BiografAPI.Controllers;
 public class MovieController : ControllerBase
 {
     private readonly IGenericRepository<Movie> _repository;
+    private readonly IMapper _mapper;
 
-    public MovieController(IGenericRepository<Movie> genericRepository)
+    public MovieController(IGenericRepository<Movie> genericRepository, IMapper mapper)
     {
         _repository = genericRepository;
+        _mapper = mapper;
     }
 
-    [HttpGet("GetAll")]
-    public async Task<List<Movie>> GetAll()
+    [HttpGet("GetAllMoviesWithThemes")]
+    public async Task<IEnumerable<MovieDTO>> GetAllMoviesWithThemes()
     {
-        return await _repository.GetAll();
+        try
+        {
+            var movies = await _repository.GetAll();
+
+            if(movies.IsNullOrEmpty()) { throw new NullReferenceException(); }
+
+            var movieDtos = _mapper.Map<IEnumerable<MovieDTO>>(movies);
+
+            return movieDtos;
+        }
+        catch (NullReferenceException ex)
+        {
+            throw new Exception($"Fandt ingenting i databasen {ex.Message}");
+        }
     }
 
     [HttpPost("InsertMovie")]
     public async Task<bool> InsertMovie([FromBody] Movie movie)
     {
         try
-        {
-            bool result = movie != null ? await _repository.InsertModel(movie) : throw new NullReferenceException();
+            {
+            if (movie == null) throw new NullReferenceException();
+
+            bool result = movie != null 
+                ? await _repository.InsertModel(movie) 
+                : throw new NullReferenceException();
 
             return result;
         }
