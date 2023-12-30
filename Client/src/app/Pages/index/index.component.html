@@ -1,8 +1,9 @@
 <div id="carousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-        <div class="carousel-item custom-flexbox custom-flexbox-contain" *ngFor="let movie of iMovies">
+        <div class="carousel-item custom-flexbox custom-flexbox-contain" *ngFor="let movie of iMovies; let i = index"
+        [class.active]="i === 0">
             <!-- Tjek billedstien og src-attributten -->
-            <img [src]="movie.imgURL" alt="Movie Image"> 
+            <img [src]="movie.imgURL" alt="Image {{ i + 1 }}"> 
             <!-- Knapper placeret i bunden af hvert carousel-element -->
             <div class="carousel-buttons">
                 <!-- Tjek routerLink-attributten -->

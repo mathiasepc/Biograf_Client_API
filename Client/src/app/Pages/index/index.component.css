@@ -1,3 +1,5 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+
 .custom-flexbox {
     text-align: center;
 }

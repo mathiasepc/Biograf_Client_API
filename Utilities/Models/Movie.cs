@@ -1,6 +1,4 @@
 ﻿
-using Utilities.DTO;
-
 namespace Utilities.Models;
 
 public class Movie : BaseModel
