@@ -13,6 +13,7 @@ import { IndexComponent } from './Pages/index/index.component';
 import { CommingComponent } from './Pages/comming/comming.component';
 import { AboutComponent } from './Pages/about/about.component';
 import { BookingComponent } from './Pages/booking/booking.component';
+import { CarouselComponent } from './component/carousel/carousel.component';
 
 
 
@@ -27,7 +28,8 @@ import { BookingComponent } from './Pages/booking/booking.component';
     IndexComponent,
     CommingComponent,
     AboutComponent,
-    BookingComponent
+    BookingComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
