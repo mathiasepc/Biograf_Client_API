@@ -12,7 +12,7 @@ export class MovieService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<iMovieDTO[]>{
+  getAllActiveMovies(): Observable<iMovieDTO[]>{
     return this.http.get<iMovieDTO[]>(this.apiUrl +  'Movie/GetAllMoviesWithThemes');
   }
 }

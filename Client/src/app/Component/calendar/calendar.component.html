@@ -1,0 +1,22 @@
+<div class="container">
+    <h3> Program </h3>
+    <div class="row" style="margin-bottom: 40px;" *ngFor="let movie of iMoviesDTO; let i = index">
+        <div class="col-md-3">
+            <!-- Elementet, der skal være til venstre -->
+            <div class="element-out-to-left">
+                <img class="img-fluid" [src]="movie.imgURL" alt="image {{ i }}">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <!-- De to elementer, der skal ligge ovenpå hinanden -->
+            <div class="element-stacked">
+                <!-- Dit indhold her -->
+                <p> {{movie.name}} </p>
+            </div>
+            <div class="element-stacked">
+                <!-- Dit indhold her -->
+                <p>Element 2</p>
+            </div>
+        </div>
+    </div>
+</div>

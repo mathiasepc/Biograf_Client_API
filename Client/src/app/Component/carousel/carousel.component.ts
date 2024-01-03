@@ -13,25 +13,14 @@ export class CarouselComponent implements OnInit {
   constructor(private movieService: MovieService) {}
 
   ngOnInit(): void {
-    this.movieService.getAll().subscribe({
-      next: (moviesFromApi) => {
+    this.movieService.getAllActiveMovies().subscribe({
+      next: (activeMoviesFromApi) => {
         console.log('next');
-        if (moviesFromApi == null) {
+        if (activeMoviesFromApi == null) {
           alert('Der findes ingen film.');
         } else {
-          moviesFromApi.forEach((movie) =>
-            console.log(
-              `idAPI: ${movie.id} navnAPI: ${movie.name} imgAPI: ${movie.imgURL}`
-            )
-          );
           // Brug et andet variabelnavn her for at undgå konflikt med movies i næste funktion
-          this.iMovies = moviesFromApi;
-
-          this.iMovies.forEach((movie) =>
-            console.log(
-              `id: ${movie.id} navn: ${movie.name} img: ${movie.imgURL}`
-            )
-          );
+          this.iMovies = activeMoviesFromApi;
         }
       },
       error: (error) => {

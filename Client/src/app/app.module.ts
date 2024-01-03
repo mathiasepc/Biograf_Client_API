@@ -7,14 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './SharePage/footer/footer.component';
 import { NavbarComponent } from './SharePage/navbar/navbar.component';
-import { LoginPageComponent } from './Pages/login-page/login-page.component';
-import { RegisterPageComponent } from './Pages/register-page/register-page.component';
 import { IndexComponent } from './Pages/index/index.component';
 import { CommingComponent } from './Pages/comming/comming.component';
 import { AboutComponent } from './Pages/about/about.component';
 import { BookingComponent } from './Pages/booking/booking.component';
-import { CarouselComponent } from './component/carousel/carousel.component';
-
+import { CarouselComponent } from './Component/carousel/carousel.component';
+import { CalendarComponent } from './Component/calendar/calendar.component';
 
 
 
@@ -23,13 +21,12 @@ import { CarouselComponent } from './component/carousel/carousel.component';
     AppComponent,
     FooterComponent,
     NavbarComponent,
-    LoginPageComponent,
-    RegisterPageComponent,
     IndexComponent,
     CommingComponent,
     AboutComponent,
     BookingComponent,
-    CarouselComponent
+    CarouselComponent,
+    CalendarComponent,
   ],
   imports: [
     BrowserModule,

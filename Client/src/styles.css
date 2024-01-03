@@ -1,0 +1,5 @@
+/* global-styles.css */
+body {
+    background-color: black;
+    color: white; /* Hvid tekst på sort baggrund for bedre læsbarhed */
+}

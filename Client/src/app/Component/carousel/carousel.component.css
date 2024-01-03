@@ -1,10 +1,7 @@
-.custom-flexbox {
-    text-align: center;
-}
-
 .custom-flexbox img {
     width: 100%;
     height: 50vw;
+    padding: 5vw; /* Juster efter behov */
 }
 
 .custom-flexbox-contain img {
@@ -17,10 +14,5 @@
     left: 0;
     width: 100%;
     text-align: center;
-    padding: 10px; /* Juster efter behov */
+    padding: 5vw; /* Juster efter behov */
 }
-
-/*
-.carousel-buttons button {
-    margin-right: 10px; /* Mellemrum mellem knapperne 
-} */

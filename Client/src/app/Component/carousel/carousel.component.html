@@ -1,25 +1,27 @@
-<div id="carousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item custom-flexbox custom-flexbox-contain" *ngFor="let movie of iMovies; let i = index"
-        [class.active]="i === 0">
-            <!-- Tjek billedstien og src-attributten -->
-            <img [src]="movie.imgURL" alt="Image {{ i + 1 }}"> 
-            <!-- Knapper placeret i bunden af hvert carousel-element -->
-            <div class="carousel-buttons">
-                <!-- Tjek routerLink-attributten -->
-                <button class="btn btn-primary" [routerLink]="['/booking', movie.id]">Bestil</button>
-                <!--<button class="btn btn-secondary">Se Trailer</button>-->
+<div class="container">
+    <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item custom-flexbox custom-flexbox-contain"
+                *ngFor="let movie of iMovies; let i = index" [class.active]="i === 0">
+                <!-- Tjek billedstien og src-attributten -->
+                <img [src]="movie.imgURL" alt="Image {{ i + 1 }}">
+                <!-- Knapper placeret i bunden af hvert carousel-element -->
+                <div class="carousel-buttons">
+                    <!-- Tjek routerLink-attributten -->
+                    <button class="btn btn-primary" [routerLink]="['/booking', movie.id]">Bestil</button>
+                    <!--<button class="btn btn-secondary">Se Trailer</button>-->
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Carousels kontrolknapper -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+        <!-- Carousels kontrolknapper -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 </div>
