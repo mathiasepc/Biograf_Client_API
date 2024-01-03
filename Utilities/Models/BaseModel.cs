@@ -3,9 +3,9 @@ namespace Utilities.Models;
 
 public class BaseModel : IBaseModel
 {
-    private Guid _id;
-
     [Key]
+    private Guid _id;
+    
     public Guid Id
     {
         get { return _id; }

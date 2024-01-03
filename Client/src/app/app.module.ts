@@ -13,6 +13,8 @@ import { AboutComponent } from './Pages/about/about.component';
 import { BookingComponent } from './Pages/booking/booking.component';
 import { CarouselComponent } from './Component/carousel/carousel.component';
 import { CalendarComponent } from './Component/calendar/calendar.component';
+import { LoginComponent } from './Pages/login/login.component';
+import { RegistrererComponent } from './Pages/registrerer/registrerer.component';
 
 
 
@@ -27,6 +29,8 @@ import { CalendarComponent } from './Component/calendar/calendar.component';
     BookingComponent,
     CarouselComponent,
     CalendarComponent,
+    LoginComponent,
+    RegistrererComponent,
   ],
   imports: [
     BrowserModule,

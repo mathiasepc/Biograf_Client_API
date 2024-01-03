@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repositories.Database;
 
@@ -11,9 +12,11 @@ using Repositories.Database;
 namespace Repository.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240103003934_AddReleaseDate")]
+    partial class AddReleaseDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,21 +83,6 @@ namespace Repository.Migrations
                     b.HasIndex("MoviesId");
 
                     b.ToTable("HallMovie");
-                });
-
-            modelBuilder.Entity("MovieReleaseDate", b =>
-                {
-                    b.Property<Guid>("MoviesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ReleaseDateId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("MoviesId", "ReleaseDateId");
-
-                    b.HasIndex("ReleaseDateId");
-
-                    b.ToTable("MovieReleaseDate");
                 });
 
             modelBuilder.Entity("MovieTheme", b =>
@@ -205,11 +193,16 @@ namespace Repository.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("MovieId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MovieId");
 
                     b.ToTable("ReleaseDates");
                 });
@@ -316,21 +309,6 @@ namespace Repository.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MovieReleaseDate", b =>
-                {
-                    b.HasOne("Utilities.Models.Movie", null)
-                        .WithMany()
-                        .HasForeignKey("MoviesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Utilities.Models.ReleaseDate", null)
-                        .WithMany()
-                        .HasForeignKey("ReleaseDateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("MovieTheme", b =>
                 {
                     b.HasOne("Utilities.Models.Movie", null)
@@ -344,6 +322,18 @@ namespace Repository.Migrations
                         .HasForeignKey("ThemesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Utilities.Models.ReleaseDate", b =>
+                {
+                    b.HasOne("Utilities.Models.Movie", null)
+                        .WithMany("ReleaseDate")
+                        .HasForeignKey("MovieId");
+                });
+
+            modelBuilder.Entity("Utilities.Models.Movie", b =>
+                {
+                    b.Navigation("ReleaseDate");
                 });
 #pragma warning restore 612, 618
         }

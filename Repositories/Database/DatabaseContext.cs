@@ -11,4 +11,5 @@ public class DatabaseContext : DbContext
     public DbSet<Cinema> Cinemas { get; set; }
     public DbSet<Movie> Movies { get; set; }
     public DbSet<Actor> Actors { get; set; }
+    public DbSet<ReleaseDate> ReleaseDates { get; set; }
 }

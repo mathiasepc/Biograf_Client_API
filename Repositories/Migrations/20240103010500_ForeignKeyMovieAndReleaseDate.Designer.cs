@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repositories.Database;
 
@@ -11,9 +12,11 @@ using Repositories.Database;
 namespace Repository.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240103010500_ForeignKeyMovieAndReleaseDate")]
+    partial class ForeignKeyMovieAndReleaseDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,13 +87,13 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("MovieReleaseDate", b =>
                 {
-                    b.Property<Guid>("MoviesId")
+                    b.Property<Guid>("MovieId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ReleaseDateId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("MoviesId", "ReleaseDateId");
+                    b.HasKey("MovieId", "ReleaseDateId");
 
                     b.HasIndex("ReleaseDateId");
 
@@ -318,13 +321,13 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("MovieReleaseDate", b =>
                 {
-                    b.HasOne("Utilities.Models.Movie", null)
+                    b.HasOne("Utilities.Models.ReleaseDate", null)
                         .WithMany()
-                        .HasForeignKey("MoviesId")
+                        .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Utilities.Models.ReleaseDate", null)
+                    b.HasOne("Utilities.Models.Movie", null)
                         .WithMany()
                         .HasForeignKey("ReleaseDateId")
                         .OnDelete(DeleteBehavior.Cascade)

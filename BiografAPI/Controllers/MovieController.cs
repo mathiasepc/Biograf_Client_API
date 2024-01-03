@@ -28,7 +28,7 @@ public class MovieController : ControllerBase
 
             var movieDtos = _mapper.Map<IEnumerable<MovieDTO>>(movies);
 
-            return movieDtos;
+                return movieDtos;
         }
         catch (NullReferenceException ex)
         {
