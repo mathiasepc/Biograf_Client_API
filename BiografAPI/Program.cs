@@ -1,6 +1,5 @@
 
-using BiografAPI.ProfileDTO;
-using Microsoft.AspNetCore.Hosting;
+using BiografAPI.Controllers;
 using Repository.Repositories;
 using System.Text.Json.Serialization;
 
@@ -10,9 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped(typeof(IBaseController<>), typeof(BaseController<>));
 
-builder.Services.AddAutoMapper(typeof(MovieProfile));
 builder.Services.AddDbContext<DatabaseContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("MathiasConnection"));

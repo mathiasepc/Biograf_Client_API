@@ -15,6 +15,7 @@ import { CarouselComponent } from './Component/carousel/carousel.component';
 import { CalendarComponent } from './Component/calendar/calendar.component';
 import { LoginComponent } from './Pages/login/login.component';
 import { RegistrererComponent } from './Pages/registrerer/registrerer.component';
+import { AdminComponent } from './AdminPages/admin/admin.component';
 
 
 
@@ -31,6 +32,7 @@ import { RegistrererComponent } from './Pages/registrerer/registrerer.component'
     CalendarComponent,
     LoginComponent,
     RegistrererComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

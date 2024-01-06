@@ -1,4 +1,5 @@
 ﻿
+
 namespace Repositories.Database;
 
 public class DatabaseContext : DbContext

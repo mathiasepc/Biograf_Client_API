@@ -1,10 +1,16 @@
 ﻿
+
 namespace BiografAPI.Controllers;
 
-public class ActorController : Controller
+[Route("api/[controller]")]
+[ApiController]
+public class ActorController : BaseController<Actor> 
 {
-    public IActionResult Index()
+    private readonly IRepository<Actor> _repository;
+
+    public ActorController(IRepository<Actor> repository) : base(repository)
     {
-        return View();
+        _repository = repository;
     }
+    
 }

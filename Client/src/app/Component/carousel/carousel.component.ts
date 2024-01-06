@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from 'src/Service/movie.service';
+import { ApiService } from 'src/Service/ApiService.service';
 import { iMovieDTO } from 'src/app/Models/iMovieDTO';
 
 @Component({
@@ -10,17 +10,17 @@ import { iMovieDTO } from 'src/app/Models/iMovieDTO';
 export class CarouselComponent implements OnInit {
   iMovies: iMovieDTO[] = [];
 
-  constructor(private movieService: MovieService) {}
+  constructor(private api: ApiService) {}
 
   ngOnInit(): void {
-    this.movieService.getAllActiveMovies().subscribe({
-      next: (activeMoviesFromApi) => {
+    this.api.getAllActiveMovies().subscribe({
+      next: (apiResult) => {
         console.log('next');
-        if (activeMoviesFromApi == null) {
+        if (apiResult == null) {
           alert('Der findes ingen film.');
         } else {
           // Brug et andet variabelnavn her for at undgå konflikt med movies i næste funktion
-          this.iMovies = activeMoviesFromApi;
+          this.iMovies = apiResult;
         }
       },
       error: (error) => {

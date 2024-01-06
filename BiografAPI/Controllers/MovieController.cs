@@ -1,59 +1,54 @@
 ﻿
-using AutoMapper;
-using Microsoft.IdentityModel.Tokens;
-
 namespace BiografAPI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class MovieController : ControllerBase
+public class MovieController : BaseController<Movie>
 {
-    private readonly IGenericRepository<Movie> _repository;
-    private readonly IMapper _mapper;
+    private readonly IRepository<Movie> _repository;
 
-    public MovieController(IGenericRepository<Movie> genericRepository, IMapper mapper)
+    public MovieController(IRepository<Movie> repository) : base(repository)
     {
-        _repository = genericRepository;
-        _mapper = mapper;
+        _repository = repository;
     }
 
-    [HttpGet("GetAllMoviesWithThemes")]
-    public async Task<IEnumerable<MovieDTO>> GetAllMoviesWithThemes()
-    {
-        try
-        {
-            var movies = await _repository.GetAll();
+    //[HttpGet("GetAllMoviesWithThemes")]
+    //public async Task<IEnumerable<MovieDTO>> GetAllMoviesWithThemes()
+    //{
+    //    try
+    //    {
+    //        var movies = await _repository.GetAll();
 
-            if(movies.IsNullOrEmpty()) { throw new NullReferenceException(); }
+    //        if(movies.IsNullOrEmpty()) { throw new NullReferenceException(); }
 
-            var movieDtos = _mapper.Map<IEnumerable<MovieDTO>>(movies);
+    //        var movieDtos = _mapper.Map<IEnumerable<MovieDTO>>(movies);
 
-                return movieDtos;
-        }
-        catch (NullReferenceException ex)
-        {
-            throw new Exception($"Fandt ingenting i databasen {ex.Message}");
-        }
-    }
+    //            return movieDtos;
+    //    }
+    //    catch (NullReferenceException ex)
+    //    {
+    //        throw new Exception($"Fandt ingenting i databasen {ex.Message}");
+    //    }
+    //}
 
-    [HttpPost("InsertMovie")]
-    public async Task<bool> InsertMovie([FromBody] Movie movie)
-    {
-        try
-            {
-            if (movie == null) throw new NullReferenceException();
+    //[HttpPost("InsertMovie")]
+    //public async Task<bool> InsertMovie([FromBody] Movie movie)
+    //{
+    //    try
+    //        {
+    //        if (movie == null) throw new NullReferenceException();
 
-            bool result = movie != null 
-                ? await _repository.InsertModel(movie) 
-                : throw new NullReferenceException();
+    //        bool result = movie != null 
+    //            ? await _repository.InsertModel(movie) 
+    //            : throw new NullReferenceException();
 
-            return result;
-        }
-        catch (Exception ex)
-        {
-            throw new Exception($"Noget gik galt {ex.Message}");
-        }
-    }
+    //        return result;
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        throw new Exception($"Noget gik galt {ex.Message}");
+    //    }
+    //}
 
 
 }

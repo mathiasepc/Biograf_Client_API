@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 // Importerer Angular's DomSanitizer
 // import { DomSanitizer } from '@angular/platform-browser';
 
@@ -11,10 +12,15 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
   logo = 'assets/img/Biograf_Logo.png';
 
-  // // Constructor, hvor DomSanitizer injiceres
-  // constructor(private sanitizer: DomSanitizer) {}
+  constructor(private router: Router) {}
 
-  // getSanitizedImage(){
-  //   return this.sanitizer.bypassSecurityTrustUrl(this.logo);
-  // }
+  onSelectChange(event: any) {
+    const selectedValue = event.target.value;
+
+    // Naviger til '/admin', hvis 'Admin' er valgt
+    if (selectedValue === 'admin') {
+      this.router.navigate(['/admin']);
+    }
+  }
 }
+

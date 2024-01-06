@@ -1,17 +1,28 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <a [routerLink]="['/']">
     <img [src]="logo" style="width: 80px; height: 80px;" alt="Biograf Logo">
-    <button class="navbar-brand nav-link" [routerLink]="['/']">Program</button>
-    <button class="navbar-brand nav-link" [routerLink]="['/commingSoon']">Kommende Film</button>
-    <button class="navbar-brand nav-link" [routerLink]="['/aboutUs']">Om os</button>
+  </a>
+  <button class="navbar-brand nav-link" [routerLink]="['/']">Program</button>
+  <button class="navbar-brand nav-link" [routerLink]="['/commingSoon']">Kommende Film</button>
+  <button class="navbar-brand nav-link" [routerLink]="['/aboutUs']">Om os</button>
 
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="navbar-brand nav-link" [routerLink]="['/login']">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="navbar-brand nav-link" [routerLink]="['/registers']">Registrerer</a>
-          </li>			
-        </ul>		  
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <a class="navbar-brand nav-link" [routerLink]="['/login']">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="navbar-brand nav-link" [routerLink]="['/registers']">Registrerer</a>
+      </li>
+    </ul>
+  </div>
+  <div class="form-group row">
+    <label for="admin">Admin</label>
+    <div class="col-sm-10">
+      <select class="form-control-sm" name="Admin" id="admin" (change)="onSelectChange($event)">
+        <option value="">Vælg venligst..</option>
+        <option value="admin">Admin</option>
+      </select>
     </div>
+  </div>
 </nav>

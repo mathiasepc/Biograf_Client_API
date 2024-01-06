@@ -6,6 +6,7 @@ import { AboutComponent } from './Pages/about/about.component';
 import { BookingComponent } from './Pages/booking/booking.component';
 import { RegistrererComponent } from './Pages/registrerer/registrerer.component';
 import { LoginComponent } from './Pages/login/login.component';
+import { AdminComponent } from './AdminPages/admin/admin.component';
 
 const routes: Routes = [
   { path: '', component:IndexComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'commingSoon', component:CommingComponent},
   { path: 'booking/:filmId', component: BookingComponent },
   { path: 'registers', component:RegistrererComponent },
-  { path: 'login', component:LoginComponent }
+  { path: 'login', component:LoginComponent },
+  { path: 'admin', component:AdminComponent}
 ];
 
 @NgModule({

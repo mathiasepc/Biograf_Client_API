@@ -4,11 +4,11 @@ using Utilities.Interface;
 
 namespace Repository.Repositories;
 
-public class GenericRepository<T> : IGenericRepository<T> where T : class
+public class Repository<T> : IRepository<T> where T : class
 {
     private readonly DatabaseContext _context;
 
-    public GenericRepository(DatabaseContext context)
+    public Repository(DatabaseContext context)
     {
         _context = context;
     }
@@ -22,6 +22,19 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         catch (Exception ex)
         {
             throw new Exception($"Noget gik galt {ex.Message}");
+        }
+    }
+
+    public async Task<T> GetById(Guid id)
+    {
+        try
+        {
+            return await _context.Set<T>()
+                .FirstOrDefaultAsync(entity => entity.GetType().GetProperty("Id").GetValue(entity, null).Equals(id));
+        }
+        catch (DbUpdateException ex)
+        {
+            throw new Exception($"Noget gik galt ved hentning af objekt {ex.Message}");
         }
     }
 

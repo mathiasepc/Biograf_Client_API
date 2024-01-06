@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { iMovieDTO } from 'src/app/Models/iMovieDTO';
-import { MovieService } from 'src/Service/movie.service';
+import { ApiService } from 'src/Service/ApiService.service';
 
 @Component({
   selector: 'app-calendar',
@@ -10,16 +10,16 @@ import { MovieService } from 'src/Service/movie.service';
 export class CalendarComponent implements OnInit {
   iMoviesDTO: iMovieDTO[] = [];
   
-  constructor(private movieService: MovieService){}
+  constructor(private api: ApiService){}
 
   ngOnInit(): void {
-    this.movieService.getAllActiveMovies().subscribe({
-      next: (activeMoviesAPI) =>{
-        if(activeMoviesAPI == null){
+    this.api.getAllActiveMovies().subscribe({
+      next: (apiResult) =>{
+        if(apiResult == null){
           console.log("Der var ingen film.");
         }
         else{
-          this.iMoviesDTO = activeMoviesAPI
+          this.iMoviesDTO = apiResult
         }
       }
     })
