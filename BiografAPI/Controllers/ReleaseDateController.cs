@@ -11,10 +11,4 @@ public class ReleaseDateController : BaseController<ReleaseDate>
     {
         _repository = repository;
     }
-
-    [HttpPost("test")]
-    public async Task<ActionResult<bool>> test()
-    {
-        return true;
-    }
 }

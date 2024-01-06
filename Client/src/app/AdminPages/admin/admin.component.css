@@ -1,0 +1,15 @@
+.action-btn {
+    color: #fff; /* Tekstfarve for knapperne */
+  }
+  
+  .table-dark th,
+  .table-dark td {
+    border-color: #dee2e6; /* Farve på cellens grænser */
+  }
+
+  body {
+    overflow-y: hidden;
+    overflow-x: hidden; /* Skjul vandret rullebjælke */
+  }
+  
+  

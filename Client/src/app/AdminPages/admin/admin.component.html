@@ -1,46 +1,30 @@
 <div>
-    <h3>Dashboard</h3>
-    <div class="form-group row">
-        <label for="admin">Vælg hvad du vil redigere:</label>
-        <div class="col-sm">
-          <select class="form-control-sm" name="Admin" id="admin" (change)="onSelectChange($event)">
-            <option value="">Vælg venligst..</option>
-            <option value="actor">Skuespiller</option>
-            <option value="cinema">Biograf</option>
-            <option value="hall">Haller</option>
-            <option value="movie">Film</option>
-            <option value="date">Kalender</option>
-            <option value="theme">Genre</option>
-            <option value="user">User</option>
-          </select>
-      </div>
-    </div> 
-    <table class="table table-dark">
+  <h3>Dashboard</h3>
+  <div class="form-group row">
+    <label for="admin">Vælg hvad du vil redigere:</label>
+    <div class="col-sm">
+      <select class="form-control-sm" name="Admin" id="admin" (change)="onSelectChange($event)">
+        <option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+      </select>
+    </div>
+  </div>
+  <table class="table table-dark">
     <thead>
-        <tr>
-             <!-- Loop gennem første element for at få kolonnenavne  -->
-            <th *ngFor="let columName of modelData">{{ columName[0] }}</th>
-          </tr>
+      <tr>
+        <th *ngFor="let columnName of columnNames">{{ columnName }}</th>
+        <th *ngIf="modelData.length > 0">Handlinger</th>
+      </tr>
     </thead>
     <tbody>
-        <tr>
-            <!-- Brug *ngFor til at gennemløbe modelData array  -->
-      <tr *ngFor="let item of modelData">
-        <td *ngFor="let relatedItem of item.relatedItem"> {{ relatedItem }}</td>
-         <!-- Loop gennem egenskaber f
-            or hvert element for at få celler -->
-         <td *ngFor="let key of Object.keys(item)">{{ item[key] }}</td> 
-          <td>
-            <button class="btn btn-warning btn-sm me-2">REDIGER</button>
-            <button class="btn btn-danger btn-sm">SLET</button>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4">
-            <button class="btn btn-success btn-sm me-2">TILFØJ</button>
-          </td>
-        </tr>
-      </tbody>
-      
+      <tr *ngFor="let row of modelData">
+        <td *ngFor="let columnName of columnNames">{{ row[columnName] }}</td>
+        <td>
+          <button class="btn btn-success btn-sm action-btn me-2">TILFØJ</button>
+          <button class="btn btn-warning btn-sm action-btn me-2">REDIGER</button>
+          <button class="btn btn-danger btn-sm action-btn">SLET</button>
+        </td>
+      </tr>
+    </tbody>
   </table>
+  
 </div>
