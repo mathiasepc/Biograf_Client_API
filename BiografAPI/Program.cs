@@ -1,5 +1,5 @@
 
-using BiografAPI.Controllers;
+using BiografAPI.Base;
 using Repository.Repositories;
 using System.Text.Json.Serialization;
 

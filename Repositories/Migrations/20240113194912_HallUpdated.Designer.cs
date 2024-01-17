@@ -12,8 +12,8 @@ using Repositories.Database;
 namespace Repository.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231230194515_ReleaseUpdated")]
-    partial class ReleaseUpdated
+    [Migration("20240113194912_HallUpdated")]
+    partial class HallUpdated
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,36 +40,6 @@ namespace Repository.Migrations
                     b.ToTable("ActorMovie");
                 });
 
-            modelBuilder.Entity("CinemaHall", b =>
-                {
-                    b.Property<Guid>("CinemasId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("HallsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("CinemasId", "HallsId");
-
-                    b.HasIndex("HallsId");
-
-                    b.ToTable("CinemaHall");
-                });
-
-            modelBuilder.Entity("CinemaUser", b =>
-                {
-                    b.Property<Guid>("CinemasId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UsersId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("CinemasId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("CinemaUser");
-                });
-
             modelBuilder.Entity("HallMovie", b =>
                 {
                     b.Property<Guid>("HallsId")
@@ -83,6 +53,21 @@ namespace Repository.Migrations
                     b.HasIndex("MoviesId");
 
                     b.ToTable("HallMovie");
+                });
+
+            modelBuilder.Entity("MovieReleaseDate", b =>
+                {
+                    b.Property<Guid>("MoviesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ReleaseDateId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("MoviesId", "ReleaseDateId");
+
+                    b.HasIndex("ReleaseDateId");
+
+                    b.ToTable("MovieReleaseDate");
                 });
 
             modelBuilder.Entity("MovieTheme", b =>
@@ -125,10 +110,6 @@ namespace Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Location")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -142,6 +123,9 @@ namespace Repository.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CinemaId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("Column")
@@ -158,7 +142,24 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CinemaId");
+
                     b.ToTable("Halls");
+                });
+
+            modelBuilder.Entity("Utilities.Models.Level", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Level");
                 });
 
             modelBuilder.Entity("Utilities.Models.Movie", b =>
@@ -166,6 +167,10 @@ namespace Repository.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ImgURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Length")
                         .IsRequired()
@@ -175,13 +180,27 @@ namespace Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Release")
+                    b.HasKey("Id");
+
+                    b.ToTable("Movies");
+                });
+
+            modelBuilder.Entity("Utilities.Models.ReleaseDate", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Movies");
+                    b.ToTable("ReleaseDates");
                 });
 
             modelBuilder.Entity("Utilities.Models.Theme", b =>
@@ -205,9 +224,11 @@ namespace Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("Age")
-                        .IsRequired()
-                        .HasColumnType("int");
+                    b.Property<DateTime>("Age")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("CinemaId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -217,11 +238,16 @@ namespace Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("LevelId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LevelId");
 
                     b.ToTable("Users");
                 });
@@ -241,36 +267,6 @@ namespace Repository.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CinemaHall", b =>
-                {
-                    b.HasOne("Utilities.Models.Cinema", null)
-                        .WithMany()
-                        .HasForeignKey("CinemasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Utilities.Models.Hall", null)
-                        .WithMany()
-                        .HasForeignKey("HallsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CinemaUser", b =>
-                {
-                    b.HasOne("Utilities.Models.Cinema", null)
-                        .WithMany()
-                        .HasForeignKey("CinemasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Utilities.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("HallMovie", b =>
                 {
                     b.HasOne("Utilities.Models.Hall", null)
@@ -282,6 +278,21 @@ namespace Repository.Migrations
                     b.HasOne("Utilities.Models.Movie", null)
                         .WithMany()
                         .HasForeignKey("MoviesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MovieReleaseDate", b =>
+                {
+                    b.HasOne("Utilities.Models.Movie", null)
+                        .WithMany()
+                        .HasForeignKey("MoviesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Utilities.Models.ReleaseDate", null)
+                        .WithMany()
+                        .HasForeignKey("ReleaseDateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -299,6 +310,29 @@ namespace Repository.Migrations
                         .HasForeignKey("ThemesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Utilities.Models.Hall", b =>
+                {
+                    b.HasOne("Utilities.Models.Cinema", "Cinema")
+                        .WithMany("Halls")
+                        .HasForeignKey("CinemaId");
+
+                    b.Navigation("Cinema");
+                });
+
+            modelBuilder.Entity("Utilities.Models.User", b =>
+                {
+                    b.HasOne("Utilities.Models.Level", "Level")
+                        .WithMany()
+                        .HasForeignKey("LevelId");
+
+                    b.Navigation("Level");
+                });
+
+            modelBuilder.Entity("Utilities.Models.Cinema", b =>
+                {
+                    b.Navigation("Halls");
                 });
 #pragma warning restore 612, 618
         }

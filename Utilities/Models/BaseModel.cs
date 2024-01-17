@@ -1,23 +1,24 @@
 ﻿
+using System.Reflection.Metadata.Ecma335;
+
 namespace Utilities.Models;
 
 public class BaseModel : IBaseModel
 {
-    [Key]
     private Guid _id;
-    
+
+    [Key]
     public Guid Id
     {
         get { return _id; }
-        private set { _id = value; }
+        set { _id = value; }
     }
 
     [Required]
-    public string Name { get; set; }
+    public string Name { get; set; }    
 
-    // Constructor to initialize the Id property
     public BaseModel()
     {
-        Id = Guid.NewGuid();
+        _id = Guid.NewGuid();
     }
 }

@@ -5,6 +5,8 @@ namespace Utilities.Models;
 
 public class Actor : BaseModel
 {
+    [Required] 
+    public string LastName { get; set;}
     [Required]
     public int? Age { get; set; }
     [JsonIgnore]

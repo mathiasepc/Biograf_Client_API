@@ -5,7 +5,7 @@
 namespace Repository.Migrations
 {
     /// <inheritdoc />
-    public partial class DataAnnotationChanges : Migration
+    public partial class version11 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

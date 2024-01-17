@@ -1,9 +1,11 @@
 ﻿
+using BiografAPI.Base;
+
 namespace BiografAPI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class CinemaController : BaseController<Cinema>
+public class CinemaController : OneToManyController<Cinema>
 {
     private readonly IRepository<Cinema> _repository;
 

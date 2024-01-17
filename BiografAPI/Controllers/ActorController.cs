@@ -1,10 +1,9 @@
 ﻿
-
 namespace BiografAPI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class ActorController : BaseController<Actor> 
+public class ActorController : ManyToManyController<Actor> 
 {
     private readonly IRepository<Actor> _repository;
 
